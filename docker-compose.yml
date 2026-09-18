@@ -2,7 +2,7 @@ services:
   db:
     image: mysql:8.0
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    restart: unless-stopped 
+    restart: unless-stopped
     stop_grace_period: 1m30s
     env_file:
       - docker-compose.env
@@ -10,7 +10,7 @@ services:
       - db:/var/lib/mysql
 
   seek:
-    image: ghcr.io/nfdi4health/ldh:${LDH_RELEASE:-latest}
+    image: ghcr.io/ubrostock/ki-tierwohl-repo:${LDH_RELEASE:-latest}
     command: docker/entrypoint.sh
     restart: unless-stopped
     environment:
@@ -33,7 +33,7 @@ services:
       - solr
 
   workers:
-    image: ghcr.io/nfdi4health/ldh:${LDH_RELEASE:-latest}
+    image: ghcr.io/ubrostock/ki-tierwohl-repo:${LDH_RELEASE:-latest}
     command: docker/start_workers.sh
     restart: unless-stopped
     environment:
@@ -63,7 +63,7 @@ services:
       - docker-entrypoint.sh
       - solr-precreate
       - seek
-      - /opt/solr/server/solr/configsets/seek_config      
+      - /opt/solr/server/solr/configsets/seek_config
 
 volumes:
   filestore:

@@ -5,16 +5,16 @@ Deployment instructions and resources for an NFDI4Health Local Data Hub.
 
 ## Disclaimer
 
-This project and it's components are subject to heavy development. 
-However, if you wish to participate in the development of the software, you are strongly encouraged to do so. Feel free to submit bug reports and suggestions 
-in the [issue tracker][project-issues]. 
+This project and it's components are subject to heavy development.
+However, if you wish to participate in the development of the software, you are strongly encouraged to do so. Feel free to submit bug reports and suggestions
+in the [issue tracker][project-issues].
 
 
 ## Prerequisites
 
 ### Hardware / Operating System / License Cost
 Hardware is not demanding; you may start with 16GB RAM, 100 GB Filespace; either a standalone PC/server  or preferably as part of a VM infrastructure.
-Linux is recommended for the FAIRDOM-SEEK/LDH installation. 
+Linux is recommended for the FAIRDOM-SEEK/LDH installation.
 FAIRDOM-SEEK/LDH and Docker-engine is free of charge.
 
 ### Docker
@@ -87,7 +87,7 @@ docker compose up -d
 or if you want to host and use the exporter to Health Study Hub on premise
 ```
 docker compose -f docker-compose-exporter.yml up -d
-``` 
+```
 
 Wait a minute and direct browser to http://localhost:3000 to reach signup page.
 If you get a "502 Bad Gateway" wait a litte longer.
@@ -99,7 +99,7 @@ docker compose logs -f seek
 
 
 ## Backup & Restore
-There is a simple backup script `backup.sh` included, which will dump your database and filestore to a backup directory. 
+There is a simple backup script `backup.sh` included, which will dump your database and filestore to a backup directory.
 You can configure the number of copies to be held in backup.
 
 ```
@@ -107,7 +107,7 @@ bash backup.sh
 ```
 
 You may destroy all data, including passwords. The only thing you need is to keep a valid copy of filestore and database.
-To restore all, startup the LDH and type 
+To restore all, startup the LDH and type
 
 ```
 bash restore.sh <database.sql.gz_from_backup> <filestore.tar.gz_from_backup>
@@ -123,7 +123,7 @@ bash update.sh
 ```
 
 Alternative: Follow "Upgrading between versions" in https://docs.seek4science.org/tech/docker/docker-compose.html
-But use LDH image name "ghcr.io/nfdi4health/ldh:latest" (or release like ghcr.io/nfdi4health/ldh:v0.3.0, see https://github.com/nfdi4health/ldh/releases) instead of "fairdom/seek:1.14".
+But use LDH image name "ghcr.io/ubrostock/ki-tierwohl-repo:latest" (or release like ghcr.io/ubrostock/ki-tierwohl-repo:v0.3.0, see https://github.com/nfdi4health/ldh/releases) instead of "fairdom/seek:1.14".
 
 
 ## Destroy all
@@ -139,7 +139,7 @@ rm docker-compose.env
 ```
 
 ## Advance: Configure for https use
-We recommend the use of a reverse proxy to make the LDH publicly and securely visible via https. Here, a SSL certificate can be presented to the outside and the communication to the inside, to the LDH, can run via HTTP. 
+We recommend the use of a reverse proxy to make the LDH publicly and securely visible via https. Here, a SSL certificate can be presented to the outside and the communication to the inside, to the LDH, can run via HTTP.
 Additional header parameters are required in SEEK inbuild nginx for communication:
 ```
 proxy_set_header X-Forwarded-Proto https;
